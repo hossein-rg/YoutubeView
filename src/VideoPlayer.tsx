@@ -60,8 +60,8 @@ const ProgressBar = styled('div')<{
   animationFillMode: 'forwards',
 }));
 
-const ShakingButton = styled(Button)<{ shake: boolean }>(({ shake }) => ({
-  ...(shake && {
+const ShakingButton = styled(Button)<{ shake: string }>(({ shake }) => ({
+  ...(shake == 'true' && {
     animation: `${shakeKeyframes} 0.5s 4`,
   }),
 }));
@@ -215,15 +215,16 @@ const YoutubePlayer: React.FC<VideoPlayerProps> = ({ onNext }) => {
           <Box display="flex" justifyContent="center">
             <Box display="flex" justifyContent="center" alignItems="center" mt={2}>
               {!nextStatus ? (
-                <ShakingButton disabled color='success' variant="contained" shake={false}>
+                <ShakingButton disabled size='large' color='success' variant="contained" shake={"false"}>
                   {videoDetails ? `Next ${videoDetails.time - Number(watchedTime.toFixed())}` : 'Next'}
                 </ShakingButton>
               ) : (
                 <ShakingButton
                   variant="outlined"
                   color="primary"
+                  size='large'
                   onClick={onNext}
-                  shake={nextStatus}
+                  shake={"true"}
                 >
                   Next
                 </ShakingButton>
